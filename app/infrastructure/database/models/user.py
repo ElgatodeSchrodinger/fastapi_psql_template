@@ -39,10 +39,8 @@ class UserQueries(IUserQueries):
     def update_user(self, old_user: UserModel, new_user: UserUpdateSchema) -> UserModel:
         with self.session as session:
             data = new_user.dict(exclude_unset=True)
-            print(data)
             session.query(UserModel).filter_by(user_id=old_user.user_id).update(data)
             session.commit()
-            session.flush()
             user_updated = session.query(UserModel).filter_by(user_id=old_user.user_id).first()
         return user_updated
 

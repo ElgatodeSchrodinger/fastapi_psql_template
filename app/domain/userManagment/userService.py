@@ -21,7 +21,6 @@ class UserService:
     def update_user(self, user_id: int, new_user: UserUpdateSchema) -> UserDBSchema:
         old_user = self.__user_queries.get_user_byid(user_id)
         user_updated = self.__user_queries.update_user(old_user, new_user)
-        print(user_updated)
         return UserDBSchema.from_orm(user_updated)
 
     def remove_user(self, user_id: int) -> UserDBSchema:
